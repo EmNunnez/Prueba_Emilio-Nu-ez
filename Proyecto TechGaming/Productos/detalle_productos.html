@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechGaming - Ficha de Producto</title>
+    <link rel="stylesheet" href="../Assets/css/estilos.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo"><span class="square-icon">■</span><h1>TechGaming</h1></div>
+        <nav class="main-nav">
+            <a href="../Página/index.html">Inicio</a>
+            <a href="productos.html" class="active">Productos</a>
+            <a href="descuentos.html">Descuentos</a>
+            <a href="../Página/sobre_nosotros.html">Sobre Nosotros</a>
+            <a href="../Noticias/blogs.html">Blogs</a>
+            <a href="../Página/contacto.html">Contacto</a>
+            <a href="../Administrador/admin.html" id="link-admin" style="display: none; color: #ef4444; font-weight: bold;">Admin</a>
+        </nav>
+        <div class="cart-status"><a href="../Página/carrito.html">🛒 Carrito (<span id="cart-count">0</span>)</a></div>
+    </header>
+
+    <main class="container">
+        <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+            <div style="background: #0f172a; border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=600&q=80" style="width: 100%; height: 350px; object-fit: cover;">
+            </div>
+            <div>
+                <span style="color: #38bdf8; font-weight: bold; font-size: 0.85rem;">MONITORES</span>
+                <h2 style="color: #f8fafc; margin: 10px 0;">Monitor Master-G 24" IPS 165Hz</h2>
+                <div style="font-size: 1.8rem; color: #ef4444; font-weight: bold; margin-bottom: 20px;">$127.990</div>
+                <p style="color: #94a3b8; line-height: 1.8; margin-bottom: 25px;">Diseñado para el juego competitivo, este monitor ofrece un panel IPS fluido de 165Hz, tiempo de respuesta ultra bajo de 1ms y compatibilidad con sincronización adaptativa para evitar el desgarro de imagen.</p>
+                <button onclick="agregarAlCarrito('Monitor Master-G 24 IPS 165Hz', 127990)" style="width: 100%; padding: 14px; background: #38bdf8; color: #020617; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1rem;">Añadir al Carrito 🛒</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>© 2026 TechGaming. Todos los derechos reservados.</footer>
+    <script src="../Assets/js/main.js"></script>
+</body>
+</html>

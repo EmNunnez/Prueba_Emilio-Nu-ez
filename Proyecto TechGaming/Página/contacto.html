@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechGaming - Contacto</title>
+    <link rel="stylesheet" href="../Assets/css/estilos.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo"><span class="square-icon">■</span><h1>TechGaming</h1></div>
+        <nav class="main-nav">
+            <a href="index.html">Inicio</a>
+            <a href="../Productos/productos.html">Productos</a>
+            <a href="../Productos/descuentos.html">Descuentos</a>
+            <a href="sobre_nosotros.html">Sobre Nosotros</a>
+            <a href="../Noticias/blogs.html">Blogs</a>
+            <a href="contacto.html" class="active">Contacto</a>
+            <a href="../Administrador/admin.html" id="link-admin" style="display: none; color: #ef4444; font-weight: bold;">Admin</a>
+            <a href="../Usuario/login.html" id="link-auth">Iniciar Sesión</a>
+            <a href="../Usuario/registro.html" id="link-register">Registrarse</a>
+        </nav>
+    </header>
+
+    <main class="container" style="max-width: 800px; margin: 40px auto; padding: 0 20px;">
+        <h2 style="color: #38bdf8; text-align: center; margin-bottom: 10px;">Ponte en Contacto</h2>
+        <p style="color: #94a3b8; text-align: center; margin-bottom: 30px;">¿Tienes alguna consulta o necesitas soporte técnico? Envíanos un mensaje y te responderemos a la brevedad.</p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+            <!-- Formulario de Contacto -->
+            <form id="contact-form" style="background: #1e293b; padding: 25px; border-radius: 8px; border: 1px solid #334155;">
+                <div style="margin-bottom: 15px;">
+                    <label style="color: #f8fafc; display: block; margin-bottom: 5px;">Nombre Completo *:</label>
+                    <input type="text" id="contact-name" required placeholder="Tu nombre" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #334155; background: #0f172a; color: #fff; box-sizing: border-box;">
+                </div>
+
+                <div style="margin-bottom: 15px;">
+                    <label style="color: #f8fafc; display: block; margin-bottom: 5px;">Correo Electrónico *:</label>
+                    <input type="email" id="contact-email" required placeholder="ejemplo@correo.com" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #334155; background: #0f172a; color: #fff; box-sizing: border-box;">
+                </div>
+
+                <div style="margin-bottom: 15px;">
+                    <label style="color: #f8fafc; display: block; margin-bottom: 5px;">Asunto *:</label>
+                    <input type="text" id="contact-subject" required placeholder="Ej: Consulta sobre stock / Soporte" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #334155; background: #0f172a; color: #fff; box-sizing: border-box;">
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="color: #f8fafc; display: block; margin-bottom: 5px;">Mensaje *:</label>
+                    <textarea id="contact-message" rows="5" required placeholder="Escribe tu mensaje aquí..." style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #334155; background: #0f172a; color: #fff; resize: vertical; box-sizing: border-box;"></textarea>
+                </div>
+
+                <button type="submit" style="width: 100%; background: #0284c7; color: #fff; border: none; padding: 12px; border-radius: 4px; cursor: pointer; font-weight: bold;">Enviar Mensaje</button>
+            </form>
+
+            <!-- Información Directa de Contacto -->
+            <div style="background: #1e293b; padding: 25px; border-radius: 8px; border: 1px solid #334155; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <h3 style="color: #38bdf8; margin-bottom: 15px;">Información de Atención</h3>
+                    <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px;">
+                        📍 <strong>Dirección:</strong> Av. Providencia 1234, Santiago, Chile<br>
+                        📞 <strong>Teléfono:</strong> +56 9 2345 6789<br>
+                        ✉️ <strong>Soporte:</strong> soporte@techgaming.cl
+                    </p>
+                    <h4 style="color: #f8fafc; margin-top: 20px; margin-bottom: 10px;">Horario de Atención:</h4>
+                    <p style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.5;">
+                        Lunes a Viernes: 09:00 - 19:00 hrs<br>
+                        Sábados: 10:00 - 14:00 hrs
+                    </p>
+                </div>
+                <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #334155; text-align: center;">
+                    <a href="../Página/index.html" style="color: #38bdf8; text-decoration: none; font-weight: bold;">← Volver al Inicio</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>© 2026 TechGaming. Todos los derechos reservados.</footer>
+
+    <script src="../Assets/js/auth.js"></script>
+    <script src="../Assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+
+                    const name = document.getElementById('contact-name').value.trim();
+                    const email = document.getElementById('contact-email').value.trim();
+                    const subject = document.getElementById('contact-subject').value.trim();
+                    const message = document.getElementById('contact-message').value.trim();
+
+                    // 1. Validar que no haya campos vacíos
+                    if (!name || !email || !subject || !message) {
+                        alert('Por favor, completa todos los campos obligatorios (*).');
+                        return;
+                    }
+
+                    // 2. Validar que el correo NO contenga Ñ o ñ
+                    if (/[ñÑ]/.test(email)) {
+                        alert('El correo electrónico no puede contener la letra "Ñ" o "ñ".');
+                        return;
+                    }
+
+                    alert('¡Gracias por contactarnos! Tu mensaje ha sido enviado exitosamente.');
+                    contactForm.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

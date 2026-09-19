@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechGaming - Registrarse</title>
+    <link rel="stylesheet" href="../Assets/css/estilos.css">
+</head>
+<body>
+    <header class="main-header" style="justify-content: center;">
+        <div class="logo">
+            <a href="../Página/index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 8px;">
+                <span class="square-icon">■</span>
+                <h1>TechGaming</h1>
+            </a>
+        </div>
+    </header>
+
+    <main class="container" style="max-width: 500px; margin: 30px auto;">
+        <h2 style="color: #38bdf8; text-align: center; margin-bottom: 20px;">Crear Cuenta</h2>
+        
+        <form id="register-form" style="background: #1e293b; padding: 25px; border-radius: 8px; border: 1px solid #334155;">
+            
+            <!-- Nombre y Apellido -->
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                <div style="flex: 1;">
+                    <label style="color: #f8fafc; display: block; margin-bottom: 5px;">Nombre *:</label>
+                    <input type="text" id="reg-firstname" required style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #334155; background: #0f172a; color: #fff; box-sizing: border-box;">
+                </div>
+                <div style="flex: 1;">
+                    <label style="color: #f8fafc; display: block; margin-bottom: 5px;">Apellido *:</label>
+                    <input type="text" id="reg-lastname" required style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #334155; background: #0f172a; color: #fff; box-sizing: border-box;">
+                </div>
+            </div>
+
+            <!-- Correo Electrónico -->
+            <div style="margin-bottom: 15px;">
+                <label style="color: #f8fafc; display: block; margin-bottom: 5px;">Correo Electrónico *:</label>
+                <input type="email" id="reg-email" required placeholder="ejemplo@correo.com" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #334155; background: #0f172a; color: #fff; box-sizing: border-box;">
+            </div>
+
+            <!-- Fecha de Nacimiento -->
+            <div style="margin-bottom: 15px;">
+                <label style="color: #f8fafc; display: block; margin-bottom: 5px;">Fecha de Nacimiento *:</label>
+                <input type="date" id="reg-dob" required style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #334155; background: #0f172a; color: #fff; box-sizing: border-box;">
+            </div>
+
+            <!-- País -->
+            <div style="margin-bottom: 15px;">
+                <label style="color: #f8fafc; display: block; margin-bottom: 5px;">País *:</label>
+                <select id="reg-country" onchange="toggleUbicacion()" required style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #334155; background: #0f172a; color: #fff; box-sizing: border-box;">
+                    <option value="">Selecciona un país</option>
+                    <option value="CL">Chile</option>
+                    <option value="AR">Argentina</option>
+                    <option value="CO">Colombia</option>
+                    <option value="MX">México</option>
+                    <option value="PE">Perú</option>
+                    <option value="OTRO">Otro país</option>
+                </select>
+            </div>
+
+            <!-- Campos para Chile -->
+            <div id="chile-fields" style="display: none; flex-direction: column; gap: 15px; margin-bottom: 15px;">
+                <div>
+                    <label style="color: #f8fafc; display: block; margin-bottom: 5px;">Región *:</label>
+                    <select id="reg-region" onchange="cargarComunas()" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #334155; background: #0f172a; color: #fff; box-sizing: border-box;">
+                        <option value="">Selecciona una región</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="color: #f8fafc; display: block; margin-bottom: 5px;">Comuna *:</label>
+                    <select id="reg-comuna" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #334155; background: #0f172a; color: #fff; box-sizing: border-box;">
+                        <option value="">Selecciona una comuna</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Ciudad / Provincia (Otro país) -->
+            <div id="other-city-field" style="display: none; margin-bottom: 15px;">
+                <label style="color: #f8fafc; display: block; margin-bottom: 5px;">Ciudad / Provincia *:</label>
+                <input type="text" id="reg-city" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #334155; background: #0f172a; color: #fff; box-sizing: border-box;">
+            </div>
+
+            <!-- Dirección -->
+            <div style="margin-bottom: 15px;">
+                <label style="color: #f8fafc; display: block; margin-bottom: 5px;">Dirección (Calle y Número) <span style="color: #94a3b8; font-size: 0.85rem;">(Opcional)</span>:</label>
+                <input type="text" id="reg-address" placeholder="Ej: Av. Providencia 1234, Depto 502" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #334155; background: #0f172a; color: #fff; box-sizing: border-box;">
+            </div>
+
+            <!-- Contraseña y Barra de Seguridad -->
+            <div style="margin-bottom: 20px;">
+                <label style="color: #f8fafc; display: block; margin-bottom: 5px;">Contraseña *:</label>
+                <input type="password" id="reg-password" required oninput="evaluarSeguridadPassword()" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #334155; background: #0f172a; color: #fff; box-sizing: border-box;">
+                
+                <!-- Indicador de Reglas -->
+                <p style="color: #94a3b8; font-size: 0.8rem; margin-top: 5px; margin-bottom: 8px;">
+                    Mínimo 8 caracteres, al menos 1 mayúscula y 1 minúscula.
+                </p>
+
+                <!-- Barra de Seguridad -->
+                <div style="width: 100%; height: 8px; background: #0f172a; border-radius: 4px; overflow: hidden; border: 1px solid #334155;">
+                    <div id="password-strength-bar" style="height: 100%; width: 0%; transition: width 0.3s, background-color 0.3s;"></div>
+                </div>
+                <span id="password-strength-text" style="color: #94a3b8; font-size: 0.8rem; display: block; margin-top: 4px; font-weight: bold;"></span>
+            </div>
+            
+            <!-- Botón de Registro -->
+            <button type="submit" style="width: 100%; background: #0284c7; color: #fff; border: none; padding: 10px; border-radius: 4px; cursor: pointer; font-weight: bold;">Registrarse</button>
+
+            <p style="color: #94a3b8; text-align: center; margin-top: 20px; font-size: 0.9rem;">
+                ¿Ya tienes una cuenta? <a href="login.html" style="color: #38bdf8; font-weight: bold;">Inicia sesión aquí</a>
+            </p>
+        </form>
+    </main>
+
+    <footer>© 2026 TechGaming. Todos los derechos reservados.</footer>
+    
+    <script src="../Assets/js/auth.js"></script>
+    <script>
+        const chileData = {
+            "Región Metropolitana": ["Santiago", "Providencia", "Las Condes", "Ñuñoa", "Maipú", "La Florida", "Puente Alto", "San Bernardo", "Vitacura", "Lo Barnechea"],
+            "Valparaíso": ["Valparaíso", "Viña del Mar", "Concón", "Quilpué", "Villa Alemana", "San Antonio"],
+            "Biobío": ["Concepción", "Talcahuano", "San Pedro de la Paz", "Chiguayante", "Los Ángeles"],
+            "Coquimbo": ["La Serena", "Coquimbo", "Ovalle"],
+            "Araucanía": ["Temuco", "Padre Las Casas", "Villarrica", "Pucón"],
+            "Antofagasta": ["Antofagasta", "Calama", "Tocopilla"],
+            "Los Lagos": ["Puerto Montt", "Puerto Varas", "Osorno", "Castro"]
+        };
+
+        const regionSelect = document.getElementById("reg-region");
+        for (let region in chileData) {
+            let option = document.createElement("option");
+            option.value = region;
+            option.textContent = region;
+            regionSelect.appendChild(option);
+        }
+
+        function toggleUbicacion() {
+            const country = document.getElementById("reg-country").value;
+            const chileFields = document.getElementById("chile-fields");
+            const otherCityField = document.getElementById("other-city-field");
+            const regionInput = document.getElementById("reg-region");
+            const comunaInput = document.getElementById("reg-comuna");
+            const cityInput = document.getElementById("reg-city");
+
+            if (country === "CL") {
+                chileFields.style.display = "flex";
+                otherCityField.style.display = "none";
+                regionInput.required = true;
+                comunaInput.required = true;
+                cityInput.required = false;
+            } else if (country !== "") {
+                chileFields.style.display = "none";
+                otherCityField.style.display = "block";
+                regionInput.required = false;
+                comunaInput.required = false;
+                cityInput.required = true;
+            } else {
+                chileFields.style.display = "none";
+                otherCityField.style.display = "none";
+                regionInput.required = false;
+                comunaInput.required = false;
+                cityInput.required = false;
+            }
+        }
+
+        function cargarComunas() {
+            const region = document.getElementById("reg-region").value;
+            const comunaSelect = document.getElementById("reg-comuna");
+            
+            comunaSelect.innerHTML = '<option value="">Selecciona una comuna</option>';
+
+            if (region && chileData[region]) {
+                chileData[region].forEach(comuna => {
+                    let option = document.createElement("option");
+                    option.value = comuna;
+                    option.textContent = comuna;
+                    comunaSelect.appendChild(option);
+                });
+            }
+        }
+
+        function evaluarSeguridadPassword() {
+            const password = document.getElementById('reg-password').value;
+            const bar = document.getElementById('password-strength-bar');
+            const text = document.getElementById('password-strength-text');
+
+            if (!password) {
+                bar.style.width = '0%';
+                text.textContent = '';
+                return;
+            }
+
+            let score = 0;
+
+            if (password.length >= 8) score += 1;
+            if (/[A-Z]/.test(password)) score += 1;
+            if (/[a-z]/.test(password)) score += 1;
+            if (/[0-9]/.test(password) || /[^A-Za-z0-9]/.test(password)) score += 1;
+
+            if (score <= 2) {
+                bar.style.width = '33%';
+                bar.style.backgroundColor = '#ef4444';
+                text.textContent = 'Seguridad: Débil';
+                text.style.color = '#ef4444';
+            } else if (score === 3) {
+                bar.style.width = '66%';
+                bar.style.backgroundColor = '#eab308';
+                text.textContent = 'Seguridad: Media';
+                text.style.color = '#eab308';
+            } else {
+                bar.style.width = '100%';
+                bar.style.backgroundColor = '#22c55e';
+                text.textContent = 'Seguridad: Fuerte';
+                text.style.color = '#22c55e';
+            }
+        }
+    </script>
+</body>
+</html>

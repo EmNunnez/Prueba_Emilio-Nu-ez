@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechGaming - Carrito de Compras</title>
+    <link rel="stylesheet" href="../Assets/css/estilos.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo">
+            <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 8px;">
+                <span class="square-icon">■</span>
+                <h1>TechGaming</h1>
+            </a>
+        </div>
+        <nav class="main-nav">
+            <a href="index.html">Inicio</a>
+            <a href="../Productos/productos.html">Productos</a>
+            <a href="../Productos/descuentos.html">Descuentos</a>
+            <a href="sobre_nosotros.html">Sobre Nosotros</a>
+            <a href="../Noticias/blogs.html">Blogs</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="../Administrador/admin.html" id="link-admin" style="display: none; color: #ef4444; font-weight: bold;">Admin</a>
+            <a href="../Usuario/login.html" id="link-auth">Iniciar Sesión</a>
+            <a href="../Usuario/registro.html" id="link-register">Registrarse</a>
+        </nav>
+        <div class="cart-status">
+            <a href="carrito.html" class="active">🛒 Carrito (<span id="cart-count">0</span>)</a>
+        </div>
+    </header>
+
+    <main class="container" style="max-width: 1100px; margin: 30px auto; padding: 0 20px;">
+        <h2 style="color: #38bdf8; margin-bottom: 20px;">Tu Carrito y Finalización de Compra</h2>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;">
+            <div style="display: flex; flex-direction: column; gap: 25px;">
+                <!-- Lista de Productos -->
+                <div style="background: #1e293b; padding: 20px; border-radius: 8px; border: 1px solid #334155;">
+                    <h3 style="color: #f8fafc; margin-bottom: 15px; border-bottom: 1px solid #334155; padding-bottom: 8px;">1. Productos Seleccionados</h3>
+                    <div id="lista-carrito" style="display: flex; flex-direction: column; gap: 15px;"></div>
+                    <button onclick="vaciarCarrito()" style="background: none; border: none; color: #ef4444; cursor: pointer; font-weight: bold; margin-top: 15px; font-size: 0.9rem;">🗑️ Vaciar todo el carrito</button>
+                </div>
+
+                <!-- Formulario de Despacho -->
+                <div style="background: #1e293b; padding: 20px; border-radius: 8px; border: 1px solid #334155;">
+                    <h3 style="color: #f8fafc; margin-bottom: 15px; border-bottom: 1px solid #334155; padding-bottom: 8px;">2. Datos de Envío y Pago</h3>
+                    <form id="checkout-form" onsubmit="event.preventDefault();">
+                        <div style="margin-bottom: 12px;">
+                            <label style="color: #cbd5e1; display: block; margin-bottom: 4px; font-size: 0.85rem;">Dirección de Calle y Número *</label>
+                            <input type="text" id="ship-address" placeholder="Ej: Av. Providencia 1234, Depto 402" style="width: 100%; padding: 10px; background: #0f172a; border: 1px solid #334155; border-radius: 4px; color: #fff; box-sizing: border-box;">
+                        </div>
+                        <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                            <div style="flex: 1;">
+                                <label style="color: #cbd5e1; display: block; margin-bottom: 4px; font-size: 0.85rem;">Ciudad / Comuna *</label>
+                                <input type="text" id="ship-city" placeholder="Ej: Santiago" style="width: 100%; padding: 10px; background: #0f172a; border: 1px solid #334155; border-radius: 4px; color: #fff; box-sizing: border-box;">
+                            </div>
+                            <div style="flex: 1;">
+                                <label style="color: #cbd5e1; display: block; margin-bottom: 4px; font-size: 0.85rem;">Teléfono *</label>
+                                <input type="tel" id="ship-phone" placeholder="+56 9 1234 5678" style="width: 100%; padding: 10px; background: #0f172a; border: 1px solid #334155; border-radius: 4px; color: #fff; box-sizing: border-box;">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Resumen de Totales -->
+            <div>
+                <div style="background: #1e293b; padding: 25px; border-radius: 8px; border: 1px solid #334155; position: sticky; top: 20px;">
+                    <h3 style="color: #f8fafc; margin-bottom: 20px; border-bottom: 1px solid #334155; padding-bottom: 10px;">Resumen del Pedido</h3>
+                    <div style="display: flex; justify-content: space-between; color: #cbd5e1; margin-bottom: 10px;">
+                        <span>Subtotal:</span>
+                        <span id="cart-subtotal">$0</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; color: #cbd5e1; margin-bottom: 15px;">
+                        <span>Costo de Envío:</span>
+                        <span style="color: #22c55e; font-weight: bold;" id="cart-shipping">$3.990</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; color: #38bdf8; font-size: 1.4rem; font-weight: bold; border-top: 1px solid #334155; padding-top: 15px; margin-bottom: 20px;">
+                        <span>Total:</span>
+                        <span id="cart-total">$0</span>
+                    </div>
+                    <button onclick="procesarPago()" style="width: 100%; background: #0284c7; color: #fff; border: none; padding: 14px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 1.05rem;">Confirmar y Pagar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>© 2026 TechGaming. Todos los derechos reservados.</footer>
+
+    <script src="../Assets/js/main.js"></script>
+    <script src="../Assets/js/auth.js"></script>
+    <script src="../Assets/js/carrito.js"></script>
+</body>
+</html>
